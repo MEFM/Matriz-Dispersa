@@ -14,6 +14,4 @@ NodoColumna::NodoColumna(int x){
 	this->abajo = NULL;
 }
 
-NodoColumna::~NodoColumna()
-{
-}
+

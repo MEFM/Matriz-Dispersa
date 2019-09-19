@@ -11,19 +11,21 @@ Matriz::~Matriz()
 
 NodoColumna* Matriz::insertarColumna(NodoPadre* raiz, NodoDisperso* nuevo){
 	if(raiz->derecha == NULL){
+		cout<<"Retorno derehco"<<endl;
 		raiz->derecha = new NodoColumna(nuevo->getX());
 		return raiz->derecha;
 	}else{
 		NodoColumna* auxiliar = raiz->derecha;
-		
+		cout<<"insertarColumna"<<endl;
 		if(auxiliar->x > nuevo->getX()){
+			cout<<"Retorno derehco2"<<endl;
 			raiz->derecha = new NodoColumna(nuevo->getX());
 			raiz->derecha->derecha = auxiliar;
 			auxiliar->izquierda = raiz->derecha;
 			return raiz->derecha;
 		}
 		while(auxiliar->derecha != NULL){
-			
+			cout<<"1"<<endl;
 			if(auxiliar->x == nuevo->getX()){
 				return auxiliar;
 			}
@@ -40,6 +42,7 @@ NodoColumna* Matriz::insertarColumna(NodoPadre* raiz, NodoDisperso* nuevo){
 				
 			}
 			else if(auxiliar->derecha == NULL){
+				cout<<"Retorno derehco2"<<endl;
 				auxiliar->derecha = new NodoColumna(nuevo->getX());
 				auxiliar->derecha->izquierda = auxiliar;
 				return auxiliar->derecha;
@@ -52,14 +55,15 @@ NodoColumna* Matriz::insertarColumna(NodoPadre* raiz, NodoDisperso* nuevo){
 
 NodoFila* Matriz::insertarFila(NodoPadre* raiz, NodoDisperso* nuevo){
 	if(raiz->abajo == NULL){
+		cout<<"Retorno abajo"<<endl;
 		raiz->abajo = new NodoFila(nuevo->getY());
 		return raiz->abajo;
 	}
 	else{
 		NodoFila* auxiliar = raiz->abajo;
-		
+		cout<<"insertarFila"<<endl;
 		if(auxiliar->y > nuevo->getY()){
-			
+			cout<<"Retorno abajo2"<<endl;
 			raiz->abajo = new NodoFila(nuevo->getY());
 			raiz->abajo->abajo = auxiliar;
 			auxiliar->arriba = raiz->abajo;
@@ -67,6 +71,7 @@ NodoFila* Matriz::insertarFila(NodoPadre* raiz, NodoDisperso* nuevo){
 		}
 		
 		while(auxiliar->abajo != NULL){
+			cout<<"2"<<endl;
 			if(auxiliar->y == nuevo->getY()){
 				return auxiliar;
 			}
@@ -84,6 +89,7 @@ NodoFila* Matriz::insertarFila(NodoPadre* raiz, NodoDisperso* nuevo){
 		
 			}
 			else if(auxiliar->abajo == NULL){
+				cout<<"Retorno abajo3"<<endl;
 				auxiliar->abajo = new NodoFila(nuevo->getY());
 				auxiliar->abajo->arriba = auxiliar;
 				return auxiliar->abajo;
@@ -105,6 +111,7 @@ bool Matriz::insertColum(NodoColumna* columna, NodoDisperso* nuevo){
 	}	
 	
 	while(temporal != NULL){
+		cout<<"3"<<endl;
 		if(temporal->getX() == nuevo->getX() && temporal->getY() == nuevo->getY()){
 			return false;
 		}
@@ -115,6 +122,7 @@ bool Matriz::insertColum(NodoColumna* columna, NodoDisperso* nuevo){
 	temporal = columna->abajo;
 	
 	if(columna->abajo->getX() > nuevo->getX()){
+		cout<<"insertColmn"<<endl;
 		NodoDisperso* aux = columna->abajo;
 		columna->abajo = nuevo;
 		nuevo->abajo = aux;
@@ -123,6 +131,7 @@ bool Matriz::insertColum(NodoColumna* columna, NodoDisperso* nuevo){
 	}
 	
 	while(temporal != NULL){
+		cout<<"4"<<endl;
 		if(columna->abajo->getX() > nuevo->getX()){
 			NodoDisperso* tempA = temporal->arriba;
 			tempA->abajo = nuevo;
@@ -132,6 +141,7 @@ bool Matriz::insertColum(NodoColumna* columna, NodoDisperso* nuevo){
 			return true;
 		}
 		else if(temporal->abajo == NULL){
+			cout<<"5"<<endl;
 			temporal->abajo = nuevo;
 			nuevo->arriba = temporal;
 			return true;
@@ -145,12 +155,13 @@ bool Matriz::insertFila(NodoFila* fila, NodoDisperso* nuevo){
 	NodoDisperso* temporal = fila->derecha;
 	
 	if(temporal == NULL){
+		cout<<"insertFila"<<endl;
 		fila->derecha = nuevo;
 		return true;
 	}
 	
 	while(temporal != NULL){
-		
+		cout<<"5"<<endl;
 		if(temporal->getX() == nuevo->getX() && temporal->getY() == nuevo->getY()){
 			return false;
 		}
@@ -160,6 +171,7 @@ bool Matriz::insertFila(NodoFila* fila, NodoDisperso* nuevo){
 	temporal = fila->derecha;
 	
 	if(fila->derecha->getY() > nuevo->getY()){
+		cout<<"insertFila primer ir";
 		NodoDisperso* auxiliar = fila->derecha;
 		fila->derecha = nuevo;
 		nuevo->derecho = auxiliar;
@@ -168,7 +180,10 @@ bool Matriz::insertFila(NodoFila* fila, NodoDisperso* nuevo){
 	}
 	
 	while(temporal!= NULL){
+		cout<<"6"<<endl;
 		if(temporal->getY() > nuevo->getY()){
+				cout<<"insertFila segundo ir";
+	
 			NodoDisperso* temporalA = temporal->izquierda;
 			temporalA->derecho = nuevo;
 			nuevo->izquierda = temporalA;

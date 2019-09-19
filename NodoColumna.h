@@ -13,7 +13,6 @@ class NodoColumna
 		NodoDisperso* abajo;
 		NodoColumna(int);
 		NodoColumna();
-		~NodoColumna();
 	protected:
 };
 
